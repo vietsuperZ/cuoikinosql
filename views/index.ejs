@@ -1,0 +1,92 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.0/gsap.min.js"></script>
+
+<section class="articles">
+    <div class="articles-container">
+        <button id="backToTop" class="back-to-top">    ↑   </button>
+        <!-- Bài viết -->
+        <div class="article-content">
+            <ul class="article-ul">
+                <% data.forEach(post => { %>
+                <li class="article-item">
+                    <a href="/post/<%= post._id %>" class="article-link">
+                        <div class="article-content">
+                            <div class="article-image">
+                                <% if (post.imageUrl) { %>
+                                <img src="<%= post.imageUrl %>" alt="Post Image" class="post-image">
+                                <% } %>
+                            </div>
+                            <p class="article-date">
+                                <%= new Intl.DateTimeFormat('vi-VN', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                }).format(new Date(post.createdAt)) %>
+                            </p>
+                            <div class="article-details">
+                                <h3><%= post.title %></h3>
+                                <article class="article-description">
+                                    <%= post.body %>
+                                </article>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+    <div class="rccontent" >
+ <!-- Recent Blogs nằm bên phải -->
+        <!-- Recent Blogs -->
+
+        <div class="recent-blogs">
+            <h3>Blog gần đây</h3>
+            <ul class="article-ul-recent">
+              <% recentBlogs.forEach(post => { %>
+                <li class="article-item-recent">
+                  <a href="/post/<%= post._id %>" class="article-link-recent">
+                    <div class="article-content-recent">
+                      
+                      <p class="article-date-recent">
+                        <%= new Intl.DateTimeFormat('vi-VN', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        }).format(new Date(post.createdAt)) %>
+                      </p>
+                      <div class="article-details-recent">
+                        <p><%= post.title %></p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              <% }) %>
+            </ul>
+          </div>
+  
+
+<!-- Danh mục Blog -->
+        <div class="category">
+            <h3>Danh mục Blog</h3>
+            <ul>
+                <li><a href="/category/">Quả bóng vàng</a></li>
+                <hr>
+                <li><a href="/category/">Bạn gái</a></li>
+                <hr>
+                <li><a href="/category/">Thành tích</a></li>
+                <hr>
+                <li><a href="/category/">Euro</a></li>
+                <hr>
+            </ul>
+        </div>
+    </div>
+       
+        
+    </div>
+    <% if (nextPage !== null) { %>
+        <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+        <% } %>
+</section>
+
+<!-- Nút quay lại đầu trang -->
+
+

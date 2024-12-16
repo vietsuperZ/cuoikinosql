@@ -1,0 +1,30 @@
+<div class="author">
+  <h1 class="author__heading">KẾT QUẢ TÌM KIẾM</h1>
+  
+</div>
+<div id="result-count" class="result-count">Có <span id="count">0</span> bài viết phù hợp</div>
+<div class="article-content">
+  <ul class="article-ul">
+    <% data.forEach(post => { %>
+      <li class="article-item">
+        <a href="/post/<%= post._id %>" class="article-link">
+          <div class="article-content">
+            <p class="article-date">
+              <%= new Intl.DateTimeFormat('vi-VN', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+              }).format(new Date(post.createdAt)) %>
+            </p>
+            <div class="article-details">
+              <h3><%= post.title %></h3>
+              <article class="article-description">
+                <%= post.body %>
+              </article>
+            </div>
+          </div>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</div>
